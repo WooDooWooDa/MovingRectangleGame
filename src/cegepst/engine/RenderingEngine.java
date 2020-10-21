@@ -50,9 +50,9 @@ public class RenderingEngine {
         frame.setSize(windowWidth, windowHeight);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);    //empeche la redimension
-        frame.setTitle("Bouncing Ball Game");
+        frame.setTitle("Moving Rectangle game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);     //programme le bouton X pour quitter le programme
-        //setUndecorated(true); enleve la bar en haut
+        frame.setUndecorated(true); //enleve la bar en haut
     }
 
     private void initializePanel() {

@@ -28,21 +28,15 @@ public class MovingRectangleGame extends Game {
 
     @Override
     public void update() {
-        if (inputHandler.isDownPressed()) {
-            player.setY(player.getY() + 4);
-        } else if (inputHandler.isUpPressed()) {
-            player.setY(player.getY() - 4);
-        } else if (inputHandler.isLeftPressed()) {
-            player.setX(player.getX() - 4);
-        } else if (inputHandler.isRightPressed()) {
-            player.setX(player.getX() + 4);
-        } else if (inputHandler.isQuitPressed()) {
+        if (inputHandler.isQuitPressed()) {
             super.stop();
         }
+        player.update(inputHandler);
     }
 
     @Override
     public void draw(Buffer buffer) {
-        buffer.drawRectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight(), Color.white);
+        buffer.drawText("Press Q to quit", 20, 15, Color.WHITE);
+        player.draw(buffer);
     }
 }
