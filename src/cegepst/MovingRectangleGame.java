@@ -4,15 +4,18 @@ import cegepst.engine.Buffer;
 import cegepst.engine.Game;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class MovingRectangleGame extends Game {
 
     private Player player;
     private InputHandler inputHandler;
+    private ArrayList<Footprint> footprints;
 
     public MovingRectangleGame() {
         player = new Player(100, 100);
         inputHandler = new InputHandler();
+        footprints = new ArrayList<>();
         super.addKeyListener(inputHandler); //viens de game
     }
 
@@ -32,11 +35,17 @@ public class MovingRectangleGame extends Game {
             super.stop();
         }
         player.update(inputHandler);
+        if (inputHandler.isMoving()) {
+            footprints.add(player.layFootPrint());
+        }
     }
 
     @Override
     public void draw(Buffer buffer) {
-        buffer.drawText("Press Q to quit", 20, 15, Color.WHITE);
+        buffer.drawText("Press Q to quit", 20, 20, Color.WHITE);
+        for (Footprint footprint : footprints) {
+            footprint.draw(buffer);
+        }
         player.draw(buffer);
     }
 }
