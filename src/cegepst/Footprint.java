@@ -8,20 +8,16 @@ import java.util.Random;
 
 public class Footprint extends StaticEntity {
 
-    private Color color;
-
     public Footprint(int x, int y) {
         teleport(x, y);
         setDimension(5, 5);
-        color = getRandomColor();
     }
 
     public void draw(Buffer buffer) {
-        buffer.drawRectangle(x, y, width, height, color);
+        buffer.drawRectangle(x, y, width, height, new Color(getRandomColor(), getRandomColor(), getRandomColor()));
     }
 
-    private Color getRandomColor() {
-        Random random = new Random();
-        return (new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256)));
+    private int getRandomColor() {
+        return (new Random().nextInt(256));
     }
 }
