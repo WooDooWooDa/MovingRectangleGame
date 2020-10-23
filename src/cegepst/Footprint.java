@@ -1,28 +1,27 @@
 package cegepst;
 
 import cegepst.engine.Buffer;
+import cegepst.engine.entities.StaticEntity;
 
 import java.awt.*;
 import java.util.Random;
 
-public class Footprint {
+public class Footprint extends StaticEntity {
 
-    private int x;
-    private int y;
-    private int height = 5;
-    private int width = 5;
+    private Color color;
 
     public Footprint(int x, int y) {
-        this.x = x;
-        this.y = y;
+        teleport(x, y);
+        setDimension(5, 5);
+        color = getRandomColor();
     }
 
     public void draw(Buffer buffer) {
-        Color color = new Color(getRandomColor(), getRandomColor(), getRandomColor());
         buffer.drawRectangle(x, y, width, height, color);
     }
 
-    private int getRandomColor() {
-        return (new Random().nextInt(256));
+    private Color getRandomColor() {
+        Random random = new Random();
+        return (new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256)));
     }
 }

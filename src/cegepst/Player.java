@@ -1,36 +1,26 @@
 package cegepst;
 
 import cegepst.engine.Buffer;
+import cegepst.engine.entities.ControllableEntity;
 
 import java.awt.*;
 
-public class Player {
+public class Player extends ControllableEntity {
 
-    private int x;
-    private int y;
-    private int width = 30;
-    private int height = 30;
-    private int speed = 4;
-
-    public Player(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Player(InputHandler inputHandler) {
+        super(inputHandler);
+        super.setDimension(30, 30);
+        super.teleport(100,100);
+        super.setSpeed(4);
     }
 
     public Footprint layFootPrint() {
         return new Footprint(x, y);
     }
 
-    public void update(InputHandler handler) {
-        if (handler.isDownPressed()) {
-            y += speed;
-        } else if (handler.isUpPressed()) {
-            y -= speed;
-        } else if (handler.isLeftPressed()) {
-            x -= speed;
-        } else if (handler.isRightPressed()) {
-            x += speed;
-        }
+    @Override
+    public void update() {
+        moveAccordingToHandler();
     }
 
     public void draw(Buffer buffer) {

@@ -13,8 +13,8 @@ public class MovingRectangleGame extends Game {
     private ArrayList<Footprint> footprints;
 
     public MovingRectangleGame() {
-        player = new Player(100, 100);
         inputHandler = new InputHandler();
+        player = new Player(inputHandler);
         footprints = new ArrayList<>();
         super.addKeyListener(inputHandler); //viens de game
     }
@@ -34,7 +34,10 @@ public class MovingRectangleGame extends Game {
         if (inputHandler.isQuitPressed()) {
             super.stop();
         }
-        player.update(inputHandler);
+        if (inputHandler.isErased()) {
+            eraseFootPrint();
+        }
+        player.update();
         if (inputHandler.isMoving()) {
             footprints.add(player.layFootPrint());
         }
@@ -42,10 +45,15 @@ public class MovingRectangleGame extends Game {
 
     @Override
     public void draw(Buffer buffer) {
-        buffer.drawText("Press Q to quit", 20, 20, Color.WHITE);
         for (Footprint footprint : footprints) {
             footprint.draw(buffer);
         }
         player.draw(buffer);
+        buffer.drawText("Press Q to quit", 20, 20, Color.WHITE);
+        buffer.drawText("Press E to erase footprints", 20, 40, Color.WHITE);
+    }
+
+    private void eraseFootPrint() {
+        footprints.clear();
     }
 }

@@ -10,6 +10,7 @@ public class InputHandler implements KeyListener {
     private boolean upPressed;
     private boolean downPressed;
     private boolean quitPressed;
+    private boolean erasedPressed;
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -27,6 +28,9 @@ public class InputHandler implements KeyListener {
         }
         if (e.getKeyCode() == KeyEvent.VK_Q) {
             quitPressed = true;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_E) {
+            erasedPressed = true;
         }
     }
 
@@ -46,6 +50,9 @@ public class InputHandler implements KeyListener {
         }
         if (e.getKeyCode() == KeyEvent.VK_Q) {
             quitPressed = false;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_E) {
+            erasedPressed = false;
         }
     }
 
@@ -76,5 +83,9 @@ public class InputHandler implements KeyListener {
 
     public boolean isQuitPressed() {
         return quitPressed;
+    }
+
+    public boolean isErased() {
+        return erasedPressed;
     }
 }
