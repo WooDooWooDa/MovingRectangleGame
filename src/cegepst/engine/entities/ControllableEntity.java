@@ -1,26 +1,26 @@
 package cegepst.engine.entities;
 
-import cegepst.InputHandler;
+import cegepst.engine.controls.MovementController;
 
 public abstract class ControllableEntity extends MovableEntity {
 
-    private InputHandler inputHandler;
+    private MovementController controller;
 
-    public ControllableEntity(InputHandler inputHandler) {
-        this.inputHandler = inputHandler;
+    public ControllableEntity(MovementController controller) {
+        this.controller = controller;
     }
 
     public void moveAccordingToHandler() {
-        if (!inputHandler.isMoving()) {
+        if (!controller.isMoving()) {
             return;
         }
-        if (inputHandler.isUpPressed()) {
+        if (controller.isUpPressed()) {
             moveUp();
-        } else if (inputHandler.isDownPressed()) {
+        } else if (controller.isDownPressed()) {
             moveDown();
-        } else if (inputHandler.isRightPressed()) {
+        } else if (controller.isRightPressed()) {
             moveRight();
-        } else if (inputHandler.isLeftPressed()) {
+        } else if (controller.isLeftPressed()) {
             moveLeft();
         }
     }
