@@ -10,7 +10,7 @@ public abstract class ControllableEntity extends MovableEntity {
         this.controller = controller;
     }
 
-    public void moveAccordingToHandler() {
+    public void moveAccordingToController() {
         if (!controller.isMoving()) {
             return;
         }
